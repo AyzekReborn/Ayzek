@@ -1,0 +1,6 @@
+build
+node_modules
+postcss.config.js
+docker-compose.yml
+data
+frontend

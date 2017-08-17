@@ -1,0 +1,1 @@
+To use CodeExecutorPlugin you need to compile this dir with `docker build -t eval .`
