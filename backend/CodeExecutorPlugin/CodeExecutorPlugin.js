@@ -11,7 +11,7 @@ export default class CodeExecutorPlugin extends AyzekPlugin{
         if(!['js','python2','python3','c','cpp','bash'].includes(lang))
             return await msg.sendText(true,'Неверный язык!');
         let code=msg.text.substr(msg.text.indexOf(lang)+lang.length+1);
-        let dockerCommand=`docker run -c 153 -m=20480 -e LANG=${lang} -e CODE="${Buffer.from(code).toString('base64')}" eval`;
+        let dockerCommand=`docker run -e LANG=${lang} -e CODE="${Buffer.from(code).toString('base64')}" eval`;
         try{
             let data=await promisify(exec)(dockerCommand,{
                 timeout: 30000,
@@ -20,6 +20,7 @@ export default class CodeExecutorPlugin extends AyzekPlugin{
             });
             await msg.sendText(true,`${data.stdout.trim()}\n${data.stderr.trim()}`.trim());
         }catch(e){
+            console.log(e.message);
             if(e.message.includes('maxBuffer'))
                 await msg.sendText(true,'Вывод команды не влез в лимит! (2000 символов)');
             else

@@ -45,6 +45,18 @@ export default class MainPlugin extends AyzekPlugin{
         descs=descs.replace(/DOT/g,'.');
         msg.sendText(true, descs);
     }
+    @command({
+        names: ['timings'],
+        helpMessage: 'Просмотр таймингов'
+    })
+    timings(msg,args){
+        let total=0;
+        let all=msg.timing.data.map(([name,start,stop,time])=>{
+            total+=time;
+            return `${name} - ${stop}-${start}=${time}n`;
+        }).join(',\n');
+        msg.sendText(false,`${all}\nВсего: ${total}n`);
+    }
 }
 
 function comparePluginName(a,b) {

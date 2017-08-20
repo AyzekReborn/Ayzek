@@ -51,34 +51,33 @@ export default class Ayzek extends XBot {
         return flatten(this.plugins);
     }
     async executeMiddlewares(event,msg,user,chat,sourceApi){
+        let timing=msg.timing;
+        timing.start('Get plugins');
         let plugins=this.getPlugins();
+        timing.stop();
+        let id=0;
         for(let plugin of plugins){
-            let m=await plugin.executeMiddlewares(event,msg,user,chat,sourceApi);
-            if(!m)
+            if(!await plugin.executeMiddlewares(event,msg,user,chat,sourceApi)){
                 return false;
+            }
+            id++;
         }
         return true;
     }
     async ayzekOnMessage(message){
+        let timing=message.timing;
+        timing.stop();
         if(!await this.executeMiddlewares('pre',message,message.user,message.chat,message.sourceApi))
             return;
         if(message.text[0]==='/'||message.text[0]==='!'){
             message.commandPrefix=message.text[0];
             message.text=message.text.substr(1);
             await this.ayzekOnCommand(message);
+        }else{
+            await this.ayzekOnPlain(message);
         }
-        await this.ayzekOnPlain(message);
         if(!await this.executeMiddlewares('post',message,message.user,message.chat,message.sourceApi))
             this.logger.warn(`"post" event is executed and returned false. Why?`);
-    }
-    async executeCommands(command,args,msg,user,chat,sourceApi){
-        let plugins=this.getPlugins();
-        for(let plugin of plugins){
-            let m=await plugin.executeCommands(command,args,msg,user,chat,sourceApi);
-            if(m)
-                return true;
-        }
-        return false;
     }
     async ayzekOnCommand(message){
         if(this.waitLocks[message.user.uid])
@@ -90,9 +89,22 @@ export default class Ayzek extends XBot {
         let parts=flatten(text.split(' ').map(d=>d.split('\n')));
         let cmd=parts[0].toLowerCase();
         let args=parts.slice(1);
-        let found=await this.executeCommands(cmd,args,message,message.user,message.chat,message.sourceApi);
-        if(!found){
-            //await message.sendText(true,'Неизвестная команда! Введи /help для просмотра списка команд!');
+        try{
+            let plugins=this.getPlugins();
+            let found=false;
+            for(let plugin of plugins){
+                if(await plugin.executeCommands(cmd,args,message,message.user,message.chat,message.sourceApi)){
+                    found=true;
+                    break;
+                }
+            }
+            if(!found){
+                await message.sendText(false,'Неизвестная команда! Введи /help для просмотра списка команд!');
+            }
+        }catch(e){
+            message.sendText(false,`${FAIL_STR}\nПри исполнении команды произошла ошибка: ${e.stack}`);
+            this.logger.error(e.stack);
+            return;
         }
     }
     async ayzekOnPlain(message){
@@ -101,15 +113,20 @@ export default class Ayzek extends XBot {
             delete this.waitLocks[message.user.uid];
             return;
         }
-        if(message.chat)
-            if(this.waitLocks[message.chat.cid]){
-                this.waitLocks[message.chat.cid][0](message);
-                delete this.waitLocks[message.chat.cid];
-                return;
+        if(message.chat&&this.waitLocks[message.chat.cid]){
+            this.waitLocks[message.chat.cid][0](message);
+            delete this.waitLocks[message.chat.cid];
+            return;
+        }
+        try{
+            let plugins=this.getPlugins();
+            for(let plugin of plugins){
+                await plugin.executeListeners(message,message.user,message.chat,message.sourceApi);
             }
-        let plugins=this.getPlugins();
-        for(let plugin of plugins){
-            await plugin.executeListeners(message,message.user,message.chat,message.sourceApi);
+        }catch(e){
+            message.sendText(false,`${FAIL_STR}\nПри исполнении обработчика произошла ошибка: ${e.stack}`);
+            this.logger.error(e.stack);
+            return;
         }
     }
 }
@@ -169,6 +186,7 @@ export class AyzekPlugin{
     }
     //Middlewares
     addMiddleware(event,listener){
+        this.hasMiddlewares=true;
         if(!this.handlers.middlewares[event])
             this.handlers.middlewares[event]=[];
         this.handlers.middlewares[event].push(listener);
@@ -211,7 +229,7 @@ export class AyzekPlugin{
     }
 }
 
-class Listener {
+export class Listener {
     key;
     regexes;
     filter;
@@ -354,10 +372,10 @@ if(require.main.filename===__filename){
 }
 process.on('unhandledException',e=>{
     console.error(e.stack);
-})
+});
 process.on('unhandledRejection',e=>{
     console.error(e.stack);
-})
+});
 
 process.on('uncaughtException',e=>{
     console.error(e.stack);
