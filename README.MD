@@ -1,5 +1,7 @@
 # Ayzek
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Creeplays/Ayzek.svg)](https://greenkeeper.io/)
+
 # How to run:
 TODO
 
