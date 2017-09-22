@@ -30,7 +30,7 @@
     "docker-remote-api-as-promised": "^2.0.1",
     "dockerode": "^2.5.0",
     "erlpack": "github:hammerandchisel/erlpack",
-    "googleapis": "^21.3.0",
+    "googleapis": "^22.0.0",
     "iconv": "^2.3.0",
     "inferno": "^3.6.3",
     "inferno-compat": "^3.6.3",
