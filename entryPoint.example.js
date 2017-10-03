@@ -36,9 +36,11 @@ async function start() {
     ayzek.addPluginLoader(new ClassicPluginSystem('closedPlugins',
         () => require.context(__dirname + '/plugins', false, /Plugin\.js$/),
         (acceptor, getContext) => module.hot.accept(getContext().id, acceptor)));
+    // From "publicPlugins"
     ayzek.addPluginLoader(new ClassicPluginSystem('openPlugins',
         () => require.context(__dirname + '/publicPlugins', false, /Plugin\.js$/),
         (acceptor, getContext) => module.hot.accept(getContext().id, acceptor)));
+    // Hubot plugins from "hubotPlugins"
     ayzek.addPluginLoader(new HubotPluginSystem('hubotPlugins',
         () => require.context(__dirname + '/hubotPlugins', false, /\.js$/),
         (acceptor, getContext) => module.hot.accept(getContext().id, acceptor)));

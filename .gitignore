@@ -4,3 +4,12 @@ postcss.config.js
 docker-compose.yml
 data
 frontend
+packages
+output
+plugins
+a.js
+uploadYT.js
+TranslatorPlugin.js
+MyMcPlugin.js
+entryPoint.js
+coprayzek.js

@@ -2,7 +2,7 @@ import {
   AyzekPlugin,
   command
 }
-from '../';
+from '../../';
 
 let rooms={};
 

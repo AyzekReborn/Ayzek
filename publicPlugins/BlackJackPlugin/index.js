@@ -1,4 +1,4 @@
-import {AyzekPlugin,command} from '../';
+import {AyzekPlugin,command} from '../../';
 import Logger from '@meteor-it/logger';
 
 const CARDS = [

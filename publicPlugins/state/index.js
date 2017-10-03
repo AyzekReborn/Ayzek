@@ -1,7 +1,7 @@
-import {AyzekPlugin,middleware} from '../';
+import {AyzekPlugin,middleware} from '../../';
 import AJSON from '@meteor-it/ajson';
 
-export default class StateKeeperPlugin extends AyzekPlugin{
+export default class State extends AyzekPlugin{
     static description='Хранилище состояния пользователей.';
     stateCache=new Map()
 

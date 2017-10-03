@@ -1,10 +1,7 @@
-import {AyzekPlugin,command} from '../';
+import {AyzekPlugin,command} from '../../';
 import Random from '@meteor-it/random';
-import * as IMAGES from './HangmanPlugin/images.yml';
-import * as FAIL from './HangmanPlugin/fail.yml';
-import * as SUCCESS from './HangmanPlugin/success.yml';
-import * as WORDS from './HangmanPlugin/word.yml';
-const DEATH_ERROR_COUNT = IMAGES.length;
+import data from './data.yml';
+const DEATH_ERROR_COUNT = data.images.length;
 
 export default class HangmanPlugin extends AyzekPlugin{
     static author='F6CF (Идея взята от бота - тюленя)'
@@ -14,7 +11,7 @@ export default class HangmanPlugin extends AyzekPlugin{
     @command({names:['visiliza','hangman'], helpMessage:'Висилица'})
     async visiliza(msg,args){
         await msg.sendText(false,'Загадываю слово...');
-        let word=this.random.randomArrayElement(WORDS);
+        let word=this.random.randomArrayElement(data.dictionary.normal);
         msg.state.word=word;
         msg.state.opened=word.replace(/[^ ]/g,'_');
         msg.state.errors=0;
@@ -30,13 +27,13 @@ export default class HangmanPlugin extends AyzekPlugin{
                 // Word guess
                 if(msg.state.word===msg.text.toLowerCase()){
                     // Guessed
-                    return await msg.sendText(true,this.random.randomArrayElement(SUCCESS));
+                    return await msg.sendText(true,this.random.randomArrayElement(data.end.success));
                 }else{
                     msg.state.errors++;
                     let showWord=checkLoose(msg.state)?msg.state.word:msg.state.opened;
-                    await msg.sendText(false,`${IMAGES[msg.state.errors-1].join('\n')}\nНет, это не ${msg.text}!\n${showWord}`);
+                    await msg.sendText(false,`${data.images[msg.state.errors-1].join('\n')}\nНет, это не ${msg.text}!\n${showWord}`);
                     if(checkLoose(msg.state))
-                        return await msg.sendText(true,this.random.randomArrayElement(FAIL));
+                        return await msg.sendText(true,this.random.randomArrayElement(data.end.fail));
                     continue;
                 }
             }else{
@@ -57,16 +54,16 @@ export default class HangmanPlugin extends AyzekPlugin{
 
                     await msg.sendText(false,`Именно! Это ${msg.text}!\n${showWord}`);
                     if(checkWin(msg.state))
-                        return await msg.sendText(true,this.random.randomArrayElement(SUCCESS));
+                        return await msg.sendText(true,this.random.randomArrayElement(data.end.success));
                     continue;
                 }else{
                     // Wrong letter
                     msg.state.errors++;
                     let showWord=checkLoose(msg.state)?msg.state.word:msg.state.opened;
                     console.log(msg.state.errors);
-                    await msg.sendText(false,`${IMAGES[msg.state.errors-1].join('\n')}\nНет, это не ${msg.text}!\n${showWord}`);
+                    await msg.sendText(false,`${data.images[msg.state.errors-1].join('\n')}\nНет, это не ${msg.text}!\n${showWord}`);
                     if(checkLoose(msg.state))
-                        return await msg.sendText(true,this.random.randomArrayElement(FAIL));
+                        return await msg.sendText(true,this.random.randomArrayElement(data.end.fail));
                     continue;
                 }
             }

@@ -1,14 +1,6 @@
-import {AyzekPlugin,command} from '../';
+import {AyzekPlugin,command} from '../../';
 import Random from '@meteor-it/random';
-
-import * as WHAT_START from './FunPlugin/what_start.yml';
-import * as WHAT_END from './FunPlugin/what_end.yml';
-
-import * as WHO_START from './FunPlugin/who_start.yml';
-import * as WHO_END from './FunPlugin/who_end.yml';
-
-import * as BETTER_START from './FunPlugin/better_start.yml';
-import * as BETTER_END from './FunPlugin/better_end.yml';
+import {what, who, better} from './phrazes.yml';
 
 export default class FunPlugin extends AyzekPlugin{
     static author='F6CF';
@@ -19,15 +11,8 @@ export default class FunPlugin extends AyzekPlugin{
         let users=msg.chat.users.map(u=>`${u.firstName} ${u.lastName}`.toLowerCase());
         if(users.indexOf(args.join(' ').toLowerCase())===-1)
             return msg.sendText(true,'Этого пользователя нет в этом чате!');
-        let u=args.join(' ').toLowerCase();
-        let podstava;
-        if(u==='александр мангустов')
-            podstava='ебёт капусту.';
-        if(u==='даня суслов')
-            podstava='ебёт мангустов.';
-
         let random=new Random(args.join(' ').toLowerCase()+new Date().getMinutes()+new Date().getHours()+new Date().getDay());
-        msg.sendText(true,`${random.randomArrayElement(WHAT_START)} ${podstava||random.randomArrayElement(WHAT_END)}`);
+        msg.sendText(true,`${random.randomArrayElement(what.start)} ${random.randomArrayElement(what.end)}`);
     }
     @command({names:['or','чтолучше','whatbetter'], helpMessage: 'Поможет определиться с выбором'})
     async or(msg,args){
@@ -36,7 +21,7 @@ export default class FunPlugin extends AyzekPlugin{
             return msg.sendText(true,'Нет выбора');
         }
         let random=new Random(u.sort().join('|2'));
-        msg.sendText(true,`${random.randomArrayElement(BETTER_START)} ${random.randomArrayElement(u)} ${random.randomArrayElement(BETTER_END)}`);
+        msg.sendText(true,`${random.randomArrayElement(better.start)} ${random.randomArrayElement(u)}${random.randomArrayElement(better.end)}`);
     }
     @command({names:['who','кто'], helpMessage:'Аналог функции из других ботов'})
     async who(msg,args){
@@ -53,7 +38,7 @@ export default class FunPlugin extends AyzekPlugin{
         if(args.length===1)
             fullUsers=msg.chat.users.filter(u=>u.firstName===args[0]).map(user=>`[id${user.targetId}|${user.firstName} ${user.lastName}]`);
         if(!fullUsers||fullUsers.length===0)
-            fullUsers=[...msg.chat.users.map(user=>`[id${user.targetId}|${user.firstName} ${user.lastName}]`),...WHO_END];
-        msg.sendText(true,random.randomArrayElement(WHO_START)+' '+random.randomArrayElement(fullUsers));
+            fullUsers=[...msg.chat.users.map(user=>`[id${user.targetId}|${user.firstName} ${user.lastName}]`)];
+        msg.sendText(true,random.randomArrayElement(who.start)+' '+random.randomArrayElement(fullUsers));
     }
 }

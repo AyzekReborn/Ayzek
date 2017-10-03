@@ -3,7 +3,7 @@ import {
     command,
     middleware
 }
-from '../';
+from '../../';
 import XPress from '@meteor-it/xpress';
 import AJSON from '@meteor-it/ajson';
 import {

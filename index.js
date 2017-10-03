@@ -1,6 +1,8 @@
-import Logger from '@meteor-it/logger';
 import {flatten} from '@meteor-it/utils';
 import XBot from '@meteor-it/xbot';
+import Logger from '@meteor-it/logger';
+import NodeLogger from '@meteor-it/logger/receivers/node';
+Logger.addReceiver(new NodeLogger());
 
 const POSSIBLE_MIDDLEWARES=['pre','post'];
 const FAIL_STR = [
@@ -69,7 +71,7 @@ export default class Ayzek extends XBot {
         timing.stop();
         if(!await this.executeMiddlewares('pre',message,message.user,message.chat,message.sourceApi))
             return;
-        if(message.text[0]==='/'||message.text[0]==='!'){
+        if(message.text.replace(/[!/]+/g,'').trim()!==''&&(message.text[0]==='/'||message.text[0]==='!')){
             message.commandPrefix=message.text[0];
             message.text=message.text.substr(1);
             await this.ayzekOnCommand(message);
@@ -99,7 +101,7 @@ export default class Ayzek extends XBot {
                 }
             }
             if(!found){
-                await message.sendText(false,'Неизвестная команда! Введи /help для просмотра списка команд!');
+                await message.sendText(false,'Нeизвестнaя команда! Введи /help для просмотра списка команд!');
             }
         }catch(e){
             message.sendText(false,`${FAIL_STR}\nПри исполнении команды произошла ошибка: ${e.stack}`);
@@ -138,6 +140,7 @@ export class AyzekPlugin{
     influx;
     mongo;
     redis;
+    file;
     get handlers(){
         if(this._handlers)
             return this._handlers;

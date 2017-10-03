@@ -1,4 +1,4 @@
-import {AyzekPlugin,listener} from '../';
+import {AyzekPlugin,listener} from '../../';
 import {File} from '@meteor-it/xbot';
 import {emit} from '@meteor-it/xrest';
 import Random from '@meteor-it/random';

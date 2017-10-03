@@ -1,10 +1,32 @@
 # Ayzek
 
 # How to run:
-TODO
+## Initial:
+- Configure bot in `entryPoint.example.js`
+- Copy `entryPoint.example.js` to `entryPoint.js`
+
+### In first terminal:
+- `git clone https://github.com/creeplays/framework packages`
+- `cd packages&&ln -s @meteor-it dist&&cd ..`
+- `npm install -g make-zaebis`
+- `npm install`
+- `make-zaebis watch -t bot` (Ignore all errors in console)
+
+### In second terminal:
+- `cd output/development/bot`
+- `node main.bot.js`
+
+## Next runs:
+### In first terminal:
+- `make-zaebis watch -t bot`
+
+### In second terminal:
+- `cd output/development/bot`
+- `node main.bot.js`
 
 # How to write plugins
-TODO
+Look at plugins/publicPlugins/FunPlugin and write other plugin in similar dir
+Or read hubot docs, and write plugins for them in hubotPlugins
 
 # Features:
 - Compatable with multiple plugin formats
@@ -36,10 +58,7 @@ TODO
     - [ ] Waiting for Venom-Bot api stabilization
     - [ ] Implement bindings
 - [ ] AyzekSDK upload
-    - [ ] Ayzek-RED private release
+    - [X] Ayzek-RED private release
     - [ ] Attachments in websocket api
 - [ ] UtilPlugin
     - [ ] Piping command output
-
-# Usage:
-TODO

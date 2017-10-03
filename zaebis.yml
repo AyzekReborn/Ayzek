@@ -1,0 +1,7 @@
+explainErrors: true
+targets:
+    bot:
+        entryPoint: ./entryPoint.js
+
+resolveRoots:
+    - packages

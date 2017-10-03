@@ -1,8 +1,0 @@
-const compile = require('protodefc-prebuilt');
-module.exports=function(protocolSource){
-    let content= `const types={"::i8":{size_of(){return 1},serialize(a,b,c){return b.writeInt8(a,c),c+1},deserialize(a,b){return[a.readInt8(b),b+1]}},"::u8":{size_of(){return 1},serialize(a,b,c){return b.writeInt8(a,c),c+1},deserialize(a,b){return[a.readInt8(b),b+1]}},"::i16":{size_of(){return 2},serialize(a,b,c){return b.writeInt16BE(a,c),c+2},deserialize(a,b){return[a.readInt16BE(b),b+2]}},"::u16":{size_of(){return 2},serialize(a,b,c){return b.writeUInt16BE(a,c),c+2},deserialize(a,b){return[a.readUInt16BE(b),b+2]}},"::i32":{size_of(){return 4},serialize(a,b,c){return b.writeInt32BE(a,c),c+4},deserialize(a,b){return[a.readInt32BE(b),b+4]}},"::u32":{size_of(){return 4},serialize(a,b,c){return b.writeUInt32BE(a,c),c+4},deserialize(a,b){return[a.readUInt32BE(b),b+4]}},"::i64":{size_of(){return 8},serialize(a,b,c){return b.writeInt64BE(a,c),c+8},deserialize(a,b){return[a.readInt64BE(b),b+8]}},"::u64":{size_of(){return 8},serialize(a,b,c){return b.writeUInt64BE(a,c),c+8},deserialize(a,b){return[a.readUInt64BE(b),b+8]}},"::varint":{size_of(a){let b=0;for(;-128&a;)a>>>=7,b++;return b+1}},"::sized_string":{size_of(a){return Buffer.byteLength(a,"utf8")},serialize(a,b,c){return c+b.write(a,c)},deserialize(a,b,c){return[a.toString("utf8",b,b+c),b+c]}},"::unit":{size_of(){return 0},serialize(a,b,c){return c},deserialize(a,b){return[null,b]}}};`;
-    content+=compile(protocolSource);
-    content+='module.exports=exports';
-    this.callback(null,content);
-    return;
-};
