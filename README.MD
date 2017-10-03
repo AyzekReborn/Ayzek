@@ -9,22 +9,19 @@
 
 ### In first terminal:
 - `git clone https://github.com/creeplays/framework packages`
-- `cd packages&&ln -s @meteor-it dist&&cd ..`
-- `npm install -g make-zaebis`
+- `cd packages&&ln -s @meteor-it dist&&cd ..` (TODO: Use framework packages from NPM)
 - `npm install`
-- `make-zaebis watch -t bot` (Ignore all errors in console)
+- `npm run compile-dev` (Ignore all errors in console (It will be fixed soon))
 
 ### In second terminal:
-- `cd output/development/bot`
-- `node main.bot.js`
+- `npm run run-dev`
 
 ## Next runs:
 ### In first terminal:
-- `make-zaebis watch -t bot`
+- `npm run compile-dev`
 
 ### In second terminal:
-- `cd output/development/bot`
-- `node main.bot.js`
+- `npm run run-dev`
 
 # How to write plugins
 Look at plugins/publicPlugins/FunPlugin and write other plugin in similar dir
