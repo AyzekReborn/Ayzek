@@ -3,9 +3,9 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/Creeplays/Ayzek.svg)](https://greenkeeper.io/)
 
 # See it running:
-Telegram: https://telegram.me/glados_hypervizor_bot
-VKontakte: https://vk.com/meteorbot
-Discord: https://discord.gg/T7549yC (Bot name is Meteor-IT, it works bad, but only there, if you run bot on your own server everything will be fine)
+- [Telegram](https://telegram.me/glados_hypervizor_bot)
+- [VKontakte](https://vk.com/meteorbot)
+- [Discord](https://discord.gg/T7549yC) (Bot name is Meteor-IT, it works bad, but only there, if you run bot on your own server everything will be fine)
 
 # How to run:
 ## Initial setup:
