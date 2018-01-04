@@ -2,9 +2,7 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Creeplays/Ayzek.svg)](https://greenkeeper.io/)
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/aH8TwSzvuyDZ2AxVx9dQWCp6/Creeplays/Ayzek'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/aH8TwSzvuyDZ2AxVx9dQWCp6/Creeplays/Ayzek.svg' />
-</a>
+
 
 # See it running:
 - [Telegram](https://telegram.me/glados_hypervizor_bot)
