@@ -6,7 +6,6 @@ import NodeLogger from '@meteor-it/logger/receivers/node';
 import {createClient} from 'then-redis';
 import ClassicPluginSystem from './pluginSystems/ClassicPluginSystem';
 import HubotPluginSystem from './pluginSystems/HubotPluginSystem';
-Logger.addReceiver(new NodeLogger());
 
 let redis = createClient();
 
@@ -32,13 +31,9 @@ async function start() {
     ayzek.attachApi(vkApi);
     ayzek.attachApi(tgApi);
 
-    // To load plugins from "plugins" dir
-    ayzek.addPluginLoader(new ClassicPluginSystem('closedPlugins',
-        () => require.context(__dirname + '/plugins', false, /Plugin\.js$/),
-        (acceptor, getContext) => module.hot.accept(getContext().id, acceptor)));
     // From "publicPlugins"
     ayzek.addPluginLoader(new ClassicPluginSystem('openPlugins',
-        () => require.context(__dirname + '/publicPlugins', false, /Plugin\.js$/),
+        () => require.context(__dirname + '/publicPlugins', false, /Plugin\/index\.js$/),
         (acceptor, getContext) => module.hot.accept(getContext().id, acceptor)));
     // Hubot plugins from "hubotPlugins"
     ayzek.addPluginLoader(new HubotPluginSystem('hubotPlugins',
