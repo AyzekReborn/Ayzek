@@ -2,10 +2,6 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Creeplays/Ayzek.svg)](https://greenkeeper.io/)
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/aH8TwSzvuyDZ2AxVx9dQWCp6/Creeplays/Ayzek'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/aH8TwSzvuyDZ2AxVx9dQWCp6/Creeplays/Ayzek.svg' />
-</a>
-
 # See it running:
 - [Telegram](https://telegram.me/glados_hypervizor_bot)
 - [VKontakte](https://vk.com/meteorbot)
@@ -13,6 +9,7 @@
 
 # How to run:
 ## Initial setup:
+- Install [redis](https://redis.io/topics/quickstart)
 - Configure bot in `entryPoint.example.js`
 - Copy `entryPoint.example.js` to `entryPoint.js`
 
@@ -58,13 +55,11 @@
 | [Discord](https://discordapp.gg) | @meteor-it/xbot/api/ds | [Multirepo](https://github.com/Meteor-DEV/Meteor.Framework/xbot/api/ds.ts) |
 
 # Roadmap:
+- [ ] Clean-up repo
 - [ ] Better documentation
 - [ ] More APIs
 - [ ] I18N support with `@meteor-it/templato`
 - [ ] Plugin store
-- [ ] Upload native plugin support
-    - [ ] Waiting for Venom-Bot api stabilization
-    - [ ] Implement bindings
 - [ ] AyzekSDK upload
     - [X] Ayzek-RED private release
     - [ ] Attachments in websocket API
