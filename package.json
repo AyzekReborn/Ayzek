@@ -19,7 +19,7 @@
   "homepage": "https://github.com/Creeplays/Ayzek#readme",
   "dependencies": {
     "@meteor-it/pixel-alphabet": "^0.3.3",
-    "@types/node": "^8.0.19",
+    "@types/node": "^9.4.4",
     "body-parser": "^1.17.2",
     "body-parser-xml": "^1.1.0",
     "bufferutil": "^3.0.2",
