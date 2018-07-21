@@ -50,7 +50,7 @@
     "normalize.css": "^7.0.0",
     "postcss-loader": "^2.0.6",
     "pubsubhubbub": "^0.4.1",
-    "randexp": "^0.4.6",
+    "randexp": "^0.5.3",
     "react": "^16.0.0",
     "react-dom": "^16.1.0",
     "react-helmet": "^5.1.3",
