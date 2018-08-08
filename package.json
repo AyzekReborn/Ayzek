@@ -64,7 +64,7 @@
     "seedrandom": "^2.4.3",
     "shipping-usps": "^0.1.1",
     "source-map": "^0.6.1",
-    "style-loader": "^0.18.2",
+    "style-loader": "^0.22.1",
     "telegram-mtproto": "^2.2.2",
     "then-redis": "^2.0.1",
     "tslib": "^1.7.1",
