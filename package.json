@@ -33,7 +33,7 @@
     "erlpack": "github:hammerandchisel/erlpack",
     "http2": "^3.3.7",
     "iconv": "^2.3.0",
-    "inferno": "^3.6.3",
+    "inferno": "^6.0.2",
     "inferno-compat": "^3.6.3",
     "inferno-helmet": "^4.0.2",
     "inferno-mobx": "^3.6.3",
