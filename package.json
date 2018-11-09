@@ -47,7 +47,7 @@
     "mobx-react-devtools": "^4.2.15",
     "node-opus": "^0.2.6",
     "node-telegram-bot-api": "^0.29.0",
-    "normalize.css": "^7.0.0",
+    "normalize.css": "^8.0.1",
     "postcss-loader": "^2.0.6",
     "pubsubhubbub": "^0.4.1",
     "randexp": "^0.4.6",
