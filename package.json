@@ -49,7 +49,7 @@
     "node-telegram-bot-api": "^0.29.0",
     "normalize.css": "^7.0.0",
     "postcss-loader": "^2.0.6",
-    "pubsubhubbub": "^0.4.1",
+    "pubsubhubbub": "^1.0.1",
     "randexp": "^0.4.6",
     "react": "^16.0.0",
     "react-dom": "^16.1.0",
