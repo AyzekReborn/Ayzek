@@ -23,7 +23,7 @@
     "body-parser": "^1.17.2",
     "body-parser-xml": "^1.1.0",
     "bufferutil": "^3.0.2",
-    "canvas": "^1.6.6",
+    "canvas": "^2.3.1",
     "chokidar": "latest",
     "crypto-js": "^3.1.9-1",
     "css-loader": "^0.28.4",
