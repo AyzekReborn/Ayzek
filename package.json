@@ -29,7 +29,7 @@
     "css-loader": "^0.28.4",
     "discord.js": "^11.1.0",
     "docker-remote-api-as-promised": "^2.0.1",
-    "dockerode": "^2.5.0",
+    "dockerode": "^3.0.2",
     "erlpack": "github:hammerandchisel/erlpack",
     "http2": "^3.3.7",
     "iconv": "^2.3.0",
