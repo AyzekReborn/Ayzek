@@ -26,7 +26,7 @@
     "canvas": "^1.6.6",
     "chokidar": "latest",
     "crypto-js": "^3.1.9-1",
-    "css-loader": "^0.28.4",
+    "css-loader": "^3.3.1",
     "discord.js": "^11.1.0",
     "docker-remote-api-as-promised": "^2.0.1",
     "dockerode": "^2.5.0",
